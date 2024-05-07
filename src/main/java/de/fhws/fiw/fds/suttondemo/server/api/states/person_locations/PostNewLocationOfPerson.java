@@ -1,22 +1,21 @@
 package de.fhws.fiw.fds.suttondemo.server.api.states.person_locations;
 
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.post.AbstractPostRelationState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
+import jakarta.ws.rs.core.Response;
 
-public class PostNewLocationOfPerson<R> extends AbstractPostRelationState<R, Location> {
+public class PostNewLocationOfPerson extends AbstractPostRelationState<Response, Location> {
 
-    public PostNewLocationOfPerson( final Builder<R> builder )
-    {
-        super( builder );
+    public PostNewLocationOfPerson(ServiceContext serviceContext, long primaryId, Location modelToStore) {
+        super(serviceContext, primaryId, modelToStore);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
-    @Override
-    protected void authorizeRequest() {
-
-    }
 
     @Override protected NoContentResult saveModel( )
     {
@@ -27,13 +26,4 @@ public class PostNewLocationOfPerson<R> extends AbstractPostRelationState<R, Loc
     {
 
     }
-
-    public static class Builder<R> extends AbstractPostRelationStateBuilder<R, Location>
-    {
-        @Override public AbstractState<R, Void> build( )
-        {
-            return new PostNewLocationOfPerson<>( this );
-        }
-    }
-
 }

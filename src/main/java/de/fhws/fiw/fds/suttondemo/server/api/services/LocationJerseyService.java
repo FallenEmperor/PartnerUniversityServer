@@ -19,14 +19,7 @@ public class LocationJerseyService extends AbstractJerseyService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response getAllLocations() {
         try {
-            return new GetAllLocations.Builder<Response>()
-                    .setQuery(new GetAllLocations.AllLocations<>())
-                    .setUriInfo(new JerseyUriInfoAdapter(this.uriInfo))
-                    .setSuttonRequest(new JerseyRequest(this.request))
-                    .setSuttonServletRequest(new JerseyServletRequest(this.httpServletRequest))
-                    .setSuttonResponse(new JerseyResponse<>())
-                    .build()
-                    .execute();
+            return new GetAllLocations( this.serviceContext, new GetAllLocations.AllLocations<>( ) ).execute( );
         } catch (SuttonWebAppException e) {
             throw new WebApplicationException(Response.status(e.getStatus().getCode())
                     .entity(e.getExceptionMessage()).build());
@@ -38,14 +31,7 @@ public class LocationJerseyService extends AbstractJerseyService {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response getSingleLocation(@PathParam("id") final long id) {
         try {
-            return new GetSingleLocation.Builder<Response>()
-                    .setRequestedId(id)
-                    .setUriInfo(new JerseyUriInfoAdapter(this.uriInfo))
-                    .setSuttonRequest(new JerseyRequest(this.request))
-                    .setSuttonServletRequest(new JerseyServletRequest(this.httpServletRequest))
-                    .setSuttonResponse(new JerseyResponse<>())
-                    .build()
-                    .execute();
+            return new GetSingleLocation( this.serviceContext, id ).execute( );
         } catch (SuttonWebAppException e) {
             throw new WebApplicationException(Response.status(e.getStatus().getCode())
                     .entity(e.getExceptionMessage()).build());
@@ -56,14 +42,7 @@ public class LocationJerseyService extends AbstractJerseyService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response createSingleLocation(final Location locationModel) {
         try {
-            return new PostNewLocation.Builder<Response>()
-                    .setModelToCreate(locationModel)
-                    .setUriInfo(new JerseyUriInfoAdapter(this.uriInfo))
-                    .setSuttonRequest(new JerseyRequest(this.request))
-                    .setSuttonServletRequest(new JerseyServletRequest(this.httpServletRequest))
-                    .setSuttonResponse(new JerseyResponse<>())
-                    .build()
-                    .execute();
+            return new PostNewLocation( this.serviceContext, locationModel ).execute( );
         } catch (SuttonWebAppException e) {
             throw new WebApplicationException(Response.status(e.getStatus().getCode())
                     .entity(e.getExceptionMessage()).build());
@@ -75,15 +54,7 @@ public class LocationJerseyService extends AbstractJerseyService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response updateSingleLocation(@PathParam("id") final long id, final Location locationModel) {
         try {
-            return new PutSingleLocation.Builder<Response>()
-                    .setRequestedId(id)
-                    .setModelToUpdate(locationModel)
-                    .setUriInfo(new JerseyUriInfoAdapter(this.uriInfo))
-                    .setSuttonRequest(new JerseyRequest(this.request))
-                    .setSuttonServletRequest(new JerseyServletRequest(this.httpServletRequest))
-                    .setSuttonResponse(new JerseyResponse<>())
-                    .build()
-                    .execute();
+            return new PutSingleLocation( this.serviceContext, id, locationModel ).execute( );
         } catch (SuttonWebAppException e) {
             throw new WebApplicationException(Response.status(e.getStatus().getCode())
                     .entity(e.getExceptionMessage()).build());
@@ -95,18 +66,10 @@ public class LocationJerseyService extends AbstractJerseyService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response deleteSingleLocation(@PathParam("id") final long id) {
         try {
-            return new DeleteSingleLocation.Builder<Response>()
-                    .setRequestedId(id)
-                    .setUriInfo(new JerseyUriInfoAdapter(this.uriInfo))
-                    .setSuttonRequest(new JerseyRequest(this.request))
-                    .setSuttonServletRequest(new JerseyServletRequest(this.httpServletRequest))
-                    .setSuttonResponse(new JerseyResponse<>())
-                    .build()
-                    .execute();
+            return new DeleteSingleLocation( this.serviceContext, id ).execute( );
         } catch (SuttonWebAppException e) {
             throw new WebApplicationException(Response.status(e.getStatus().getCode())
                     .entity(e.getExceptionMessage()).build());
         }
     }
-
 }

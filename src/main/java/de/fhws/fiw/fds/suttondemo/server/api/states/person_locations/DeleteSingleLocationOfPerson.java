@@ -1,22 +1,22 @@
 package de.fhws.fiw.fds.suttondemo.server.api.states.person_locations;
 
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.delete.AbstractDeleteRelationState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
 import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
+import jakarta.ws.rs.core.Response;
 
-public class DeleteSingleLocationOfPerson<R> extends AbstractDeleteRelationState<R, Location> {
+public class DeleteSingleLocationOfPerson extends AbstractDeleteRelationState<Response, Location> {
 
-    public DeleteSingleLocationOfPerson(final Builder<R> builder) {
-        super(builder);
+    public DeleteSingleLocationOfPerson(ServiceContext serviceContext, long modelIdToDelete, long primaryId) {
+        super(serviceContext, modelIdToDelete, primaryId);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
-    @Override
-    protected void authorizeRequest() {
-
-    }
 
     @Override
     protected SingleModelResult<Location> loadModel() {
@@ -35,12 +35,4 @@ public class DeleteSingleLocationOfPerson<R> extends AbstractDeleteRelationState
                 getAcceptRequestHeader(),
                 this.primaryId);
     }
-
-    public static class Builder<R> extends AbstractDeleteRelationStateBuilder<R> {
-        @Override
-        public AbstractState<R, Void> build() {
-            return new DeleteSingleLocationOfPerson<R>(this);
-        }
-    }
-
 }

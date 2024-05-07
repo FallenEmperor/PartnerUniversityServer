@@ -14,10 +14,9 @@ public class QueryByLocationName<R> extends AbstractRelationQuery<R, Location> {
 
     private int waitingTime;
 
-    public QueryByLocationName(long primaryId, String cityName, int offset, int size, int waitingTime) {
+    public QueryByLocationName(long primaryId, String cityName, int offset, int size) {
         super(primaryId);
         this.cityName = cityName;
-        this.waitingTime = waitingTime;
         this.pagingBehavior = new PagingBehaviorUsingOffsetSize<>(offset, size);
     }
 

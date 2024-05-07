@@ -16,17 +16,21 @@
 
 package de.fhws.fiw.fds.suttondemo.server.api.states.persons;
 
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.delete.AbstractDeleteState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
 import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
+import jakarta.ws.rs.core.Response;
 
-public class DeleteSinglePerson<R> extends AbstractDeleteState<R, Person> {
+public class DeleteSinglePerson extends AbstractDeleteState<Response, Person> {
 
-    public DeleteSinglePerson(final Builder<R> builder) {
-        super(builder);
+    public DeleteSinglePerson(ServiceContext serviceContext, long modelIdToDelete) {
+        super(serviceContext, modelIdToDelete);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
     @Override
@@ -44,15 +48,4 @@ public class DeleteSinglePerson<R> extends AbstractDeleteState<R, Person> {
 
     }
 
-    @Override
-    protected void authorizeRequest() {
-
-    }
-
-    public static class Builder<R> extends AbstractDeleteStateBuilder<R> {
-        @Override
-        public AbstractState<R, Void> build() {
-            return new DeleteSinglePerson<>(this);
-        }
-    }
 }

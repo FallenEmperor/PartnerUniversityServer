@@ -16,41 +16,24 @@
 
 package de.fhws.fiw.fds.suttondemo.server.api.states.persons;
 
-import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
+import de.fhws.fiw.fds.sutton.server.api.queries.AbstractQuery;
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetCollectionState;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
-import de.fhws.fiw.fds.suttondemo.server.api.queries.QueryByFirstAndLastName;
+import jakarta.ws.rs.core.Response;
 
 import java.util.Collection;
 
-public class GetAllPersons<R> extends AbstractGetCollectionState<R, Person> {
+public class GetAllPersons extends AbstractGetCollectionState<Response, Person> {
 
-    public GetAllPersons(final Builder<R> builder) {
-        super(builder);
-    }
-
-    @Override
-    protected void authorizeRequest() {
-        QueryByFirstAndLastName<R> theQuery = (QueryByFirstAndLastName<R>) this.query;
-        int waitingTime = theQuery.getWaitingTime();
-
-        try {
-            Thread.sleep(waitingTime);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public GetAllPersons(ServiceContext serviceContext, AbstractQuery<Response, Person> query) {
+        super(serviceContext, query);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
     @Override
     protected void defineTransitionLinks() {
         addLink(PersonUri.REL_PATH, PersonRelTypes.CREATE_PERSON, getAcceptRequestHeader());
-    }
-
-    public static class Builder<R> extends AbstractGetCollectionStateBuilder<R, Person> {
-
-        @Override
-        public AbstractState<R, Collection<Person>> build() {
-            return new GetAllPersons<>(this);
-        }
     }
 }

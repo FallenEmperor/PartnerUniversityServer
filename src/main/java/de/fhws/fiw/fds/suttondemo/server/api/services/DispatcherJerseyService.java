@@ -22,13 +22,7 @@ public class DispatcherJerseyService extends AbstractJerseyService {
     @GET
     public Response getDispatcher() {
         try {
-            return new GetDispatcher.Builder<Response>()
-                    .setUriInfo(new JerseyUriInfoAdapter(this.uriInfo))
-                    .setSuttonResponse(new JerseyResponse<>())
-                    .setSuttonRequest(new JerseyRequest(this.request))
-                    .setSuttonServletRequest(new JerseyServletRequest(this.httpServletRequest))
-                    .build()
-                    .execute();
+            return new GetDispatcher(this.serviceContext) .execute();
         } catch (SuttonWebAppException e) {
             throw new WebApplicationException(Response.status(e.getStatus().getCode())
                     .entity(e.getExceptionMessage()).build());

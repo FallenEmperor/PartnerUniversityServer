@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 public class PersonStorage extends AbstractInMemoryStorage<Person> implements PersonDao {
     @Override
     public CollectionModelResult<Person> readByFirstNameAndLastName(String firstName, String lastName, SearchParameter searchParameter) {
-        return InMemoryPaging.page(this.readByPredicate(
+        return InMemoryPaging.page(this.readAllByPredicate(
                 byFirstAndLastName(firstName, lastName),
                 searchParameter
         ), searchParameter.getOffset(), searchParameter.getSize());

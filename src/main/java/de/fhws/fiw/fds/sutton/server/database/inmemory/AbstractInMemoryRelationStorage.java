@@ -67,7 +67,15 @@ public abstract class AbstractInMemoryRelationStorage<T extends AbstractModel> {
 		}
 	}
 
-	protected CollectionModelResult<T> readByPredicate(final long primaryId, final Predicate<T> predicate) {
+	/**
+	 * Reads all sub-resources linked to a primary resource defined by the provided primaryId
+	 *
+	 * @param primaryId
+	 * @param primaryId
+	 * @param predicate
+	 * @return
+	 */
+	protected CollectionModelResult<T> readAllLinkedByPredicate(final long primaryId, final Predicate<T> predicate) {
 		return new CollectionModelResult<>(
 				clone(primaryId, this.storage.get(primaryId)
 						.stream()
@@ -78,6 +86,14 @@ public abstract class AbstractInMemoryRelationStorage<T extends AbstractModel> {
 						.collect(Collectors.toList())));
 	}
 
+	/**
+	 * Reads all sub-resources and returns a set of entities where the primary Id is set to the given
+	 * primary Id even if the entity is not linked to the primary resource
+	 *
+	 * @param primaryId
+	 * @param predicate
+	 * @return
+	 */
 	protected CollectionModelResult<T> readAllByPredicate(final long primaryId, final Predicate<T> predicate) {
 		return new CollectionModelResult<>(
 				clone(primaryId, this.getSecondaryStorage().readAll().getResult().stream()

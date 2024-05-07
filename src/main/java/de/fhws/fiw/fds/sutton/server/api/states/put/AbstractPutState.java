@@ -17,6 +17,7 @@
 package de.fhws.fiw.fds.sutton.server.api.states.put;
 
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.Status;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
@@ -66,6 +67,12 @@ public abstract class AbstractPutState<R, T extends AbstractModel> extends Abstr
         this.modelToUpdate = builder.modelToUpdate;
     }
 
+    public AbstractPutState(ServiceContext serviceContext, long requestedId, T modelToUpdate) {
+        super(serviceContext);
+        this.modelToUpdate = modelToUpdate;
+        this.requestedId = requestedId;
+    }
+
     @Override
     protected R buildInternal() {
         configureState();
@@ -100,7 +107,7 @@ public abstract class AbstractPutState<R, T extends AbstractModel> extends Abstr
     /**
      * This method should be used to prove if the user is allowed to update an existing model
      */
-    protected abstract void authorizeRequest();
+    protected void authorizeRequest(){}
 
     /**
      * Extending classes should use this method to load the model to update from the database

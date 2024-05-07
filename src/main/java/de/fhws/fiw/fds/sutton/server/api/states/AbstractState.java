@@ -23,6 +23,7 @@ import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.requestAdapter.SuttonRe
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.Status;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.SuttonResponse;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.uriInfoAdapter.SuttonUriInfo;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 
 /**
  * <p>The AbstractState class defines the basic requirements each extending state class needs to define a proper workflow.</p>
@@ -52,6 +53,12 @@ public abstract class AbstractState<R, T> {
         this.suttonResponse = builder.suttonResponse;
     }
 
+    protected AbstractState(final ServiceContext serviceContext ) {
+        this.uriInfo = serviceContext.getUriInfo();
+        this.suttonServletRequest = serviceContext.getServletRequest();
+        this.suttonRequest = serviceContext.getRequest();
+    }
+
     /**
      * This is the main method to start execution of this state implementation.
      *
@@ -68,6 +75,11 @@ public abstract class AbstractState<R, T> {
 
             return this.suttonResponse.status(Status.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    public AbstractState<R,T> setResponse( SuttonResponse<R, T> suttonResponse ) {
+        this.suttonResponse = suttonResponse;
+        return this;
     }
 
     /**

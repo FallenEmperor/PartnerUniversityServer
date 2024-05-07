@@ -1,6 +1,8 @@
 package de.fhws.fiw.fds.suttondemo.server.api.states.person_locations;
 
 import de.fhws.fiw.fds.sutton.server.api.caching.CachingUtils;
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.put.AbstractPutRelationState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
@@ -8,17 +10,15 @@ import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
+import jakarta.ws.rs.core.Response;
 
-public class PutSingleLocationOfPerson<R> extends AbstractPutRelationState<R, Location> {
+public class PutSingleLocationOfPerson extends AbstractPutRelationState<Response, Location> {
 
-    public PutSingleLocationOfPerson(final Builder<R> builder) {
-        super(builder);
+    public PutSingleLocationOfPerson(ServiceContext serviceContext, long primaryId, long requestedId, Location modelToUpdate) {
+        super(serviceContext, primaryId, requestedId, modelToUpdate);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
-    @Override
-    protected void authorizeRequest() {
-
-    }
 
     @Override
     protected boolean clientDoesNotKnowCurrentModelState(AbstractModel modelFromDatabase) {
@@ -47,12 +47,4 @@ public class PutSingleLocationOfPerson<R> extends AbstractPutRelationState<R, Lo
                 getAcceptRequestHeader(),
                 this.primaryId, this.requestedId);
     }
-
-    public static class Builder<R> extends AbstractPutRelationStateBuilder<R, Location> {
-        @Override
-        public AbstractState<R, Void> build() {
-            return new PutSingleLocationOfPerson<>(this);
-        }
-    }
-
 }

@@ -20,6 +20,7 @@ import de.fhws.fiw.fds.sutton.server.api.hyperlinks.processors.SuttonAnnotations
 import de.fhws.fiw.fds.sutton.server.api.queries.AbstractQuery;
 import de.fhws.fiw.fds.sutton.server.api.queries.PagingContext;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.Status;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
@@ -66,6 +67,11 @@ public abstract class AbstractGetCollectionState<R, T extends AbstractModel> ext
         this.query = builder.query;
     }
 
+    public AbstractGetCollectionState(ServiceContext serviceContext, AbstractQuery<R, T> query) {
+        super(serviceContext);
+        this.query = query;
+    }
+
     @Override
     protected R buildInternal() {
         configureState();
@@ -86,7 +92,7 @@ public abstract class AbstractGetCollectionState<R, T extends AbstractModel> ext
     /**
      * This method should be used to prove if the user is allowed to request a model
      */
-    protected abstract void authorizeRequest();
+    protected void authorizeRequest(){}
 
     /**
      * Extending classes should use this method to implement the loading of the requested resources

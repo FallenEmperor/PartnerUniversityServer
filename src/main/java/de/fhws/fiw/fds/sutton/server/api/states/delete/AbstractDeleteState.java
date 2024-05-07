@@ -17,6 +17,7 @@
 package de.fhws.fiw.fds.sutton.server.api.states.delete;
 
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.Status;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
@@ -55,6 +56,11 @@ public abstract class AbstractDeleteState<R, T extends AbstractModel> extends Ab
         this.modelIdToDelete = builder.requestedId;
     }
 
+    public AbstractDeleteState(ServiceContext serviceContext, long modelIdToDelete) {
+        super(serviceContext);
+        this.modelIdToDelete = modelIdToDelete;
+    }
+
     @Override
     protected R buildInternal() {
         configureState();
@@ -83,7 +89,7 @@ public abstract class AbstractDeleteState<R, T extends AbstractModel> extends Ab
     /**
      * This method should be used to prove if the user is allowed to perform the delete action
      */
-    protected abstract void authorizeRequest();
+    protected void authorizeRequest(){}
 
     /**
      * Extending classes should use this method to search for the model to be deleted in the storage

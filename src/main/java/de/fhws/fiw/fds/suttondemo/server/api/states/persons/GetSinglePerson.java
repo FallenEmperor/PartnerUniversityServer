@@ -18,6 +18,8 @@ package de.fhws.fiw.fds.suttondemo.server.api.states.persons;
 
 import de.fhws.fiw.fds.sutton.server.api.caching.CachingUtils;
 import de.fhws.fiw.fds.sutton.server.api.caching.EtagGenerator;
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetState;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
@@ -26,20 +28,18 @@ import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
 import de.fhws.fiw.fds.suttondemo.server.api.states.person_locations.PersonLocationRelTypes;
 import de.fhws.fiw.fds.suttondemo.server.api.states.person_locations.PersonLocationUri;
+import jakarta.ws.rs.core.Response;
 
-public class GetSinglePerson<R> extends AbstractGetState<R, Person> {
+public class GetSinglePerson extends AbstractGetState<Response, Person> {
 
-    public GetSinglePerson(final Builder<R> builder) {
-        super(builder);
+    public GetSinglePerson(ServiceContext serviceContext, long requestedId) {
+        super(serviceContext, requestedId);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
     @Override
     protected SingleModelResult<Person> loadModel() {
         return DaoFactory.getInstance().getPersonDao().readById(this.requestedId);
-    }
-
-    @Override
-    protected void authorizeRequest() {
     }
 
     @Override
@@ -62,12 +62,5 @@ public class GetSinglePerson<R> extends AbstractGetState<R, Person> {
                 this.requestedId );
         addLink( PersonLocationUri.REL_PATH, PersonLocationRelTypes.CREATE_LOCATION, getAcceptRequestHeader( ),
                 this.requestedId );
-    }
-
-    public static class Builder<R> extends AbstractGetStateBuilder<R, Person> {
-        @Override
-        public AbstractState<R, Person> build() {
-            return new GetSinglePerson<>(this);
-        }
     }
 }

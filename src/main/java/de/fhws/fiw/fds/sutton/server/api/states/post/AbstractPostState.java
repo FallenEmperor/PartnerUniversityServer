@@ -17,6 +17,7 @@
 package de.fhws.fiw.fds.sutton.server.api.states.post;
 
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.Status;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
@@ -49,6 +50,11 @@ public abstract class AbstractPostState<R, T extends AbstractModel> extends Abst
         this.modelToStore = builder.modelToCreate;
     }
 
+    public AbstractPostState(ServiceContext serviceContext, T modelToStore) {
+        super(serviceContext);
+        this.modelToStore = modelToStore;
+    }
+
     @Override
     protected R buildInternal() {
         configureState();
@@ -71,7 +77,7 @@ public abstract class AbstractPostState<R, T extends AbstractModel> extends Abst
     /**
      * This method should be used to prove if the user is allowed to create a model
      */
-    protected abstract void authorizeRequest();
+    protected void authorizeRequest(){}
 
     /**
      * Extending classes should use this method to implement the creation of model in the database

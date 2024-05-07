@@ -25,7 +25,7 @@ import org.apache.catalina.loader.ParallelWebappClassLoader;
 import java.util.HashSet;
 import java.util.Set;
 
-@ApplicationPath("")
+@ApplicationPath("api")
 public class SuttonDemoJerseyApplication extends AbstractJerseyApplication {
 
     @Override

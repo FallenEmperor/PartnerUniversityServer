@@ -17,6 +17,8 @@
 package de.fhws.fiw.fds.suttondemo.server.api.states.persons;
 
 import de.fhws.fiw.fds.sutton.server.api.caching.CachingUtils;
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.put.AbstractPutState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
@@ -24,11 +26,13 @@ import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
+import jakarta.ws.rs.core.Response;
 
-public class PutSinglePerson<R> extends AbstractPutState<R, Person> {
+public class PutSinglePerson extends AbstractPutState<Response, Person> {
 
-    public PutSinglePerson(final Builder<R> builder) {
-        super(builder);
+    public PutSinglePerson(ServiceContext serviceContext, long requestedId, Person modelToUpdate) {
+        super(serviceContext, requestedId, modelToUpdate);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
     @Override
@@ -39,10 +43,6 @@ public class PutSinglePerson<R> extends AbstractPutState<R, Person> {
     @Override
     protected NoContentResult updateModel() {
         return DaoFactory.getInstance().getPersonDao().update(this.modelToUpdate);
-    }
-
-    @Override
-    protected void authorizeRequest() {
     }
 
     @Override
@@ -59,12 +59,5 @@ public class PutSinglePerson<R> extends AbstractPutState<R, Person> {
     protected void defineTransitionLinks() {
         addLink(PersonUri.REL_PATH_ID, PersonRelTypes.GET_SINGLE_PERSON, getAcceptRequestHeader(),
                 this.modelToUpdate.getId());
-    }
-
-    public static class Builder<R> extends AbstractPutStateBuilder<R, Person> {
-        @Override
-        public AbstractState<R, Void> build() {
-            return new PutSinglePerson<>(this);
-        }
     }
 }

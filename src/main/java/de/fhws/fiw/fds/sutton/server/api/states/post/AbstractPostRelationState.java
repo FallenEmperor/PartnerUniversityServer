@@ -1,5 +1,6 @@
 package de.fhws.fiw.fds.sutton.server.api.states.post;
 
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 
 /**
@@ -23,6 +24,12 @@ public abstract class AbstractPostRelationState<R, T extends AbstractModel> exte
     public AbstractPostRelationState(final AbstractPostRelationStateBuilder<R, T> builder) {
         super(builder);
         this.primaryId = builder.parentId;
+    }
+
+    public AbstractPostRelationState(ServiceContext serviceContext, long primaryId, T modelToStore) {
+        super(serviceContext, modelToStore);
+        this.primaryId = primaryId;
+        this.modelToStore = modelToStore;
     }
 
     public static abstract class AbstractPostRelationStateBuilder<R, T extends AbstractModel>

@@ -1,5 +1,6 @@
 package de.fhws.fiw.fds.sutton.server.api.states.put;
 
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 
 /**
@@ -23,6 +24,13 @@ public abstract class AbstractPutRelationState<R, T extends AbstractModel> exten
     public AbstractPutRelationState(final AbstractPutRelationStateBuilder<R, T> builder) {
         super(builder);
         this.primaryId = builder.parentId;
+    }
+
+    public AbstractPutRelationState(ServiceContext serviceContext, long primaryId, long requestedId, T modelToUpdate) {
+        super(serviceContext, requestedId, modelToUpdate);
+        this.primaryId = primaryId;
+        this.modelToUpdate = modelToUpdate;
+        this.requestedId = requestedId;
     }
 
     public static abstract class AbstractPutRelationStateBuilder<R, T extends AbstractModel>

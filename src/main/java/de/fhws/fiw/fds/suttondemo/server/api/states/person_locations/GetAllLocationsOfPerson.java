@@ -1,27 +1,21 @@
 package de.fhws.fiw.fds.suttondemo.server.api.states.person_locations;
 
+import de.fhws.fiw.fds.sutton.server.api.queries.AbstractRelationQuery;
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetCollectionRelationState;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
 import de.fhws.fiw.fds.suttondemo.server.api.queries.QueryByLocationName;
+import jakarta.ws.rs.core.Response;
 
 import java.util.Collection;
 
-public class GetAllLocationsOfPerson<R> extends AbstractGetCollectionRelationState<R, Location> {
-    public GetAllLocationsOfPerson(final Builder<R> builder) {
-        super(builder);
-    }
+public class GetAllLocationsOfPerson extends AbstractGetCollectionRelationState<Response, Location> {
 
-    @Override
-    protected void authorizeRequest() {
-        QueryByLocationName<R> theQuery = (QueryByLocationName<R>) this.query;
-        int waitingTime = theQuery.getWaitingTime();
-
-        try {
-            Thread.sleep(waitingTime);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public GetAllLocationsOfPerson(ServiceContext serviceContext, long primaryId, AbstractRelationQuery<Response, Location> query) {
+        super(serviceContext, primaryId, query);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
     @Override
@@ -37,12 +31,5 @@ public class GetAllLocationsOfPerson<R> extends AbstractGetCollectionRelationSta
                 getAcceptRequestHeader(),
                 this.primaryId);
 
-    }
-
-    public static class Builder<R> extends AbstractGetCollectionRelationStateBuilder<R, Location> {
-        @Override
-        public AbstractState<R, Collection<Location>> build() {
-            return new GetAllLocationsOfPerson<R>(this);
-        }
     }
 }

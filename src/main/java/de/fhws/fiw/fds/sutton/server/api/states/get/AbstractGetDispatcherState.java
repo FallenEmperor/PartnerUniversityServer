@@ -18,6 +18,7 @@ package de.fhws.fiw.fds.sutton.server.api.states.get;
 
 import de.fhws.fiw.fds.sutton.server.api.caching.CachingUtils;
 import de.fhws.fiw.fds.sutton.server.api.hyperlinks.Hyperlinks;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 
 import java.net.URI;
@@ -34,6 +35,10 @@ public abstract class AbstractGetDispatcherState<R> extends AbstractState<R, Voi
 
     protected AbstractGetDispatcherState(final AbstractDispatcherStateBuilder<R> builder) {
         super(builder);
+    }
+
+    public AbstractGetDispatcherState(ServiceContext serviceContext) {
+        super(serviceContext);
     }
 
     @Override

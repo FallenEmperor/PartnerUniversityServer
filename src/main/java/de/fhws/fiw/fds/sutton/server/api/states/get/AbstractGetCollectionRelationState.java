@@ -1,6 +1,8 @@
 package de.fhws.fiw.fds.sutton.server.api.states.get;
 
+import de.fhws.fiw.fds.sutton.server.api.queries.AbstractQuery;
 import de.fhws.fiw.fds.sutton.server.api.queries.AbstractRelationQuery;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 
 /**
@@ -31,6 +33,13 @@ public abstract class AbstractGetCollectionRelationState<R, T extends AbstractMo
         super(builder);
         this.primaryId = builder.parentId;
         this.query = builder.query;
+        super.query = this.query;
+    }
+
+    public AbstractGetCollectionRelationState(ServiceContext serviceContext, long primaryId, AbstractRelationQuery<R, T> query) {
+        super(serviceContext, query);
+        this.primaryId = primaryId;
+        this.query = query;
         super.query = this.query;
     }
 

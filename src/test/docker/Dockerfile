@@ -1,4 +1,4 @@
-FROM tomcat:8.5.65-jdk8-corretto
+FROM tomcat:10.1.23-jdk21-temurin-jammy
 
 ADD *.war /usr/local/tomcat/webapps/
 

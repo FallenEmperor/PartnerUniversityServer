@@ -79,16 +79,15 @@ public interface IDatabaseRelationAccessObject<T extends AbstractModel> {
      * @param searchParameter {@link SearchParameter} to set the paging behavior and the sorting criteria
      * @return a {@link CollectionModelResult} of all resources in the database
      */
-    CollectionModelResult<T> readAll(final long primaryId, SearchParameter searchParameter);
+    CollectionModelResult<T> readAllLinked(final long primaryId, SearchParameter searchParameter);
 
     /**
-     * Searches the database for all sub-resources linked to a primary resource using the provided searchParameter
-     * to configure the paging behavior and the sorting criteria
+     * Searches the database for all sub-resources linked to a primary resource
      *
      * @return a {@link CollectionModelResult} of all resources in the database
      */
-    default CollectionModelResult<T> readAll(final long primaryId) {
-        return readAll(primaryId, SearchParameter.DEFAULT);
+    default CollectionModelResult<T> readAllLinked(final long primaryId) {
+        return readAllLinked(primaryId, SearchParameter.DEFAULT);
     }
 
 }

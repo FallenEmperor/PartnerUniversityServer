@@ -1,5 +1,6 @@
 package de.fhws.fiw.fds.sutton.server.api.states.get;
 
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 
 /**
@@ -23,6 +24,11 @@ public abstract class AbstractGetRelationState<R, T extends AbstractModel> exten
     public AbstractGetRelationState(final AbstractGetRelationStateBuilder<R, T> builder) {
         super(builder);
         this.primaryId = builder.parentId;
+    }
+
+    public AbstractGetRelationState(ServiceContext serviceContext, long primaryId, long requestedId) {
+        super(serviceContext, requestedId);
+        this.primaryId = primaryId;
     }
 
     public static abstract class AbstractGetRelationStateBuilder<R, T extends AbstractModel> extends AbstractGetStateBuilder<R, T> {

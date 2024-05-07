@@ -16,16 +16,20 @@
 
 package de.fhws.fiw.fds.suttondemo.server.api.states.persons;
 
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.post.AbstractPostState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
+import jakarta.ws.rs.core.Response;
 
-public class PostNewPerson<R> extends AbstractPostState<R, Person> {
+public class PostNewPerson extends AbstractPostState<Response, Person> {
 
-    public PostNewPerson(final Builder<R> builder) {
-        super(builder);
+    public PostNewPerson(ServiceContext serviceContext, Person modelToStore) {
+        super(serviceContext, modelToStore);
+        this.suttonResponse = new JerseyResponse<>();
     }
 
     @Override
@@ -34,18 +38,7 @@ public class PostNewPerson<R> extends AbstractPostState<R, Person> {
     }
 
     @Override
-    protected void authorizeRequest() {
-    }
-
-    @Override
     protected void defineTransitionLinks() {
 
-    }
-
-    public static class Builder<R> extends AbstractPostStateBuilder<R, Person> {
-        @Override
-        public AbstractState<R, Void> build() {
-            return new PostNewPerson<>(this);
-        }
     }
 }

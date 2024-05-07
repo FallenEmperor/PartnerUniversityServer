@@ -1,5 +1,6 @@
 package de.fhws.fiw.fds.sutton.server.api.states.delete;
 
+import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 
 /**
@@ -23,6 +24,11 @@ public abstract class AbstractDeleteRelationState<R, T extends AbstractModel> ex
     public AbstractDeleteRelationState(final AbstractDeleteRelationStateBuilder<R> builder) {
         super(builder);
         this.primaryId = builder.parentId;
+    }
+
+    public AbstractDeleteRelationState(ServiceContext serviceContext, long modelIdToDelete, long primaryId) {
+        super(serviceContext, modelIdToDelete);
+        this.primaryId = primaryId;
     }
 
     public static abstract class AbstractDeleteRelationStateBuilder<R> extends AbstractDeleteStateBuilder<R> {
