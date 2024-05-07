@@ -12,7 +12,7 @@
  * the License.
  */
 
-package de.fhws.fiw.fds.suttondemo.server;
+package de.fhws.fiw.fds.suttondemo.server.database;
 
 
 import de.fhws.fiw.fds.suttondemo.server.database.inmemory.LocationStorage;

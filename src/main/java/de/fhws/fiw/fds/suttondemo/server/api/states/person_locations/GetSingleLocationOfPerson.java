@@ -4,11 +4,10 @@ import de.fhws.fiw.fds.sutton.server.api.caching.CachingUtils;
 import de.fhws.fiw.fds.sutton.server.api.caching.EtagGenerator;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
 import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
-import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetRelationState;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
-import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
+import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
 import jakarta.ws.rs.core.Response;
 

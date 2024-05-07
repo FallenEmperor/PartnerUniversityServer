@@ -18,10 +18,9 @@ package de.fhws.fiw.fds.suttondemo.server.api.states.persons;
 
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
 import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
-import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.post.AbstractPostState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
-import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
+import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
 import jakarta.ws.rs.core.Response;
 

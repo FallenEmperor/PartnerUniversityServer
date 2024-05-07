@@ -1,11 +1,10 @@
 package de.fhws.fiw.fds.suttondemo.server.api.states.locations;
 
 import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
-import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.delete.AbstractDeleteState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
-import de.fhws.fiw.fds.suttondemo.server.DaoFactory;
+import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
 import de.fhws.fiw.fds.suttondemo.server.api.states.persons.PersonRelTypes;
 import de.fhws.fiw.fds.suttondemo.server.api.states.persons.PersonUri;

@@ -10,7 +10,7 @@
         <jersey.version>3.1.3</jersey.version>
         <fds.exam.name>demo</fds.exam.name>
         <tomcat.context.path>${fds.exam.name}</tomcat.context.path>
-        <tomcat.wait.for.url>http://localhost:8080/demo/api</tomcat.wait.for.url>
+        <tomcat.wait.for.url>http://localhost:8080/${fds.exam.name}/api</tomcat.wait.for.url>
     </properties>
     <licenses>
         <license>
@@ -79,7 +79,7 @@
                         </volume>
                     </volumes>
                     <images>
-                        <image>
+                        <!--image>
                             <name>database:1.0</name>
                             <alias>mysql</alias>
                             <build>
@@ -106,7 +106,7 @@
                                     <time>20000</time>
                                 </wait>
                             </run>
-                        </image>
+                        </image-->
                         <image>
                             <alias>${fds.exam.name}</alias>
                             <name>fds-${fds.exam.name}-template:1.0</name>
