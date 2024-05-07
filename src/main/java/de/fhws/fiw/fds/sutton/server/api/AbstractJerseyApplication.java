@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import de.fhws.fiw.fds.sutton.server.api.converter.JacksonConfig;
-import de.fhws.fiw.fds.sutton.server.api.rateLimiting.service.RateLimiterJerseyService;
 import org.apache.catalina.filters.CorsFilter;
 import org.apache.catalina.loader.ParallelWebappClassLoader;
 import org.glassfish.jersey.linking.DeclarativeLinkingFeature;
@@ -56,8 +55,6 @@ public abstract class AbstractJerseyApplication extends ResourceConfig {
         classloader.setDelegate(true);
 
         Set<Class<?>> allServiceClasses = new HashSet<>(getServiceClasses());
-
-        allServiceClasses.add(RateLimiterJerseyService.class);
 
         return allServiceClasses;
     }

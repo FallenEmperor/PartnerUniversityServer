@@ -41,11 +41,10 @@ public class PersonJerseyService extends AbstractJerseyService {
             @DefaultValue("") @QueryParam("firstname") final String firstName,
             @DefaultValue("") @QueryParam("lastname") final String lastName,
             @DefaultValue("0") @QueryParam("offset") int offset,
-            @DefaultValue("20") @QueryParam("size") int size,
-            @DefaultValue("0") @QueryParam("wait") int waitingTime) {
+            @DefaultValue("20") @QueryParam("size") int size ) {
         try {
             return new GetAllPersons.Builder<Response>()
-                    .setQuery(new QueryByFirstAndLastName<>(firstName, lastName, offset, size, waitingTime))
+                    .setQuery(new QueryByFirstAndLastName<>(firstName, lastName, offset, size ))
                     .setUriInfo(new JerseyUriInfoAdapter(this.uriInfo))
                     .setSuttonRequest(new JerseyRequest(this.request))
                     .setSuttonServletRequest(new JerseyServletRequest(this.httpServletRequest))

@@ -16,7 +16,6 @@
 
 package de.fhws.fiw.fds.sutton.server;
 
-import de.fhws.fiw.fds.sutton.server.database.hibernate.DatabaseInstaller;
 import org.apache.catalina.Context;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.startup.Tomcat;
@@ -33,8 +32,6 @@ public abstract class AbstractStart {
     private static final String WEB_APP_CLASSES = "target/classes";
 
     protected void startTomcat() throws Exception {
-        //new DatabaseInstaller().install();
-
         final Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
         tomcat.getConnector();

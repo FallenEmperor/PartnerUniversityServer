@@ -27,12 +27,9 @@ public class QueryByFirstAndLastName<R> extends AbstractQuery<R, Person> {
     private String firstName;
     private String lastName;
 
-    private int waitingTime;
-
-    public QueryByFirstAndLastName(String firstName, String lastName, int offset, int size, int waitingTime) {
+    public QueryByFirstAndLastName(String firstName, String lastName, int offset, int size) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.waitingTime = waitingTime;
         this.pagingBehavior = new PagingBehaviorUsingOffsetSize<>(offset, size);
     }
 
@@ -50,14 +47,6 @@ public class QueryByFirstAndLastName<R> extends AbstractQuery<R, Person> {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public int getWaitingTime() {
-        return waitingTime;
-    }
-
-    public void setWaitingTime(int waitingTime) {
-        this.waitingTime = waitingTime;
     }
 
     protected CollectionModelResult<Person> doExecuteQuery(SearchParameter searchParameter) throws DatabaseException {

@@ -17,7 +17,6 @@
 package de.fhws.fiw.fds.sutton.server.api.states;
 
 import de.fhws.fiw.fds.sutton.server.api.hyperlinks.Hyperlinks;
-import de.fhws.fiw.fds.sutton.server.api.rateLimiting.RateLimiter;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.Exceptions.SuttonWebAppException;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.ServletRequestAdapter.SuttonServletRequest;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.requestAdapter.SuttonRequest;
@@ -43,8 +42,6 @@ public abstract class AbstractState<R, T> {
 
     protected SuttonResponse<R, T> suttonResponse;
 
-    private RateLimiter rateLimiter;
-
     /**
      * This constructor instantiates an instance of the AbstractState class using the builder pattern
      */
@@ -52,7 +49,6 @@ public abstract class AbstractState<R, T> {
         this.uriInfo = builder.uriInfo;
         this.suttonServletRequest = builder.suttonServletRequest;
         this.suttonRequest = builder.SuttonRequest;
-        this.rateLimiter = builder.rateLimiter != null ? builder.rateLimiter : RateLimiter.DEFAULT;
         this.suttonResponse = builder.suttonResponse;
     }
 
@@ -63,7 +59,7 @@ public abstract class AbstractState<R, T> {
      */
     public final R execute() throws SuttonWebAppException {
         try {
-            return buildInternalWithRateLimiter();
+            return buildInternal();
         } catch (SuttonWebAppException e) {
             e.printStackTrace();
             throw e;
@@ -71,20 +67,6 @@ public abstract class AbstractState<R, T> {
             e.printStackTrace();
 
             return this.suttonResponse.status(Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    /**
-     * This adds the {@link RateLimiter}-Logic and checks if the request is allowed.
-     *
-     * @return the response sent back to the client
-     */
-    private R buildInternalWithRateLimiter() {
-        String apiKey = getApiKeyFromRequest();
-        if (rateLimiter.isRequestAllowed(apiKey)) {
-            return buildInternal();
-        } else {
-            throw new SuttonWebAppException(Status.TOO_MANY_REQUESTS, "Rate limit exceeded for API key: " + apiKey);
         }
     }
 
@@ -115,7 +97,7 @@ public abstract class AbstractState<R, T> {
     }
 
     /**
-     * Add a link to the response builder. This method should be called by sub-classes during
+     * Add a link to the response builder. This method should be called by subclasses during
      * processing of the request, for example as part of method {@link #buildInternal()}.
      *
      * @param uriTemplate a template of an absolute URI
@@ -170,8 +152,6 @@ public abstract class AbstractState<R, T> {
 
         protected SuttonRequest SuttonRequest;
 
-        protected RateLimiter rateLimiter;
-
         protected SuttonResponse<R, T> suttonResponse;
 
         public AbstractStateBuilder<R, T> setUriInfo(final SuttonUriInfo uriInfo) {
@@ -186,11 +166,6 @@ public abstract class AbstractState<R, T> {
 
         public AbstractStateBuilder<R, T>  setSuttonRequest(final SuttonRequest suttonRequest) {
             this.SuttonRequest = suttonRequest;
-            return this;
-        }
-
-        public AbstractStateBuilder<R, T>  setRateLimiter(final RateLimiter rateLimiter) {
-            this.rateLimiter = rateLimiter;
             return this;
         }
 

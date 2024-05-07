@@ -17,12 +17,16 @@
 package de.fhws.fiw.fds.sutton.server.api.services;
 
 
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.ServletRequestAdapter.JerseyServletRequest;
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.requestAdapter.JerseyRequest;
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.uriInfoAdapter.JerseyUriInfoAdapter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Request;
+import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
 
-public class AbstractJerseyService {
+public abstract class AbstractJerseyService {
 
     @Context
     protected UriInfo uriInfo;
@@ -33,4 +37,13 @@ public class AbstractJerseyService {
     @Context
     protected HttpServletRequest httpServletRequest;
 
+    protected final ServiceContext serviceContext;
+
+    protected AbstractJerseyService() {
+        this.serviceContext = new ServiceContext(
+                new JerseyUriInfoAdapter(this.uriInfo),
+                new JerseyRequest(this.request),
+                new JerseyServletRequest(this.httpServletRequest)
+        );
+    }
 }

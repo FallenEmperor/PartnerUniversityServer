@@ -15,16 +15,15 @@
 package de.fhws.fiw.fds.suttondemo.server;
 
 
-import de.fhws.fiw.fds.suttondemo.server.database.hibernate.LocationDaoAdapter;
-import de.fhws.fiw.fds.suttondemo.server.database.hibernate.PersonDaoAdapter;
-import de.fhws.fiw.fds.suttondemo.server.database.hibernate.PersonLocationDaoAdapter;
-import de.fhws.fiw.fds.suttondemo.server.database.hibernate.UserDaoAdapter;
+import de.fhws.fiw.fds.suttondemo.server.database.inmemory.LocationStorage;
+import de.fhws.fiw.fds.suttondemo.server.database.inmemory.PersonLocationStorage;
+import de.fhws.fiw.fds.suttondemo.server.database.inmemory.PersonStorage;
 
 public class DaoFactory {
 
     private static DaoFactory INSTANCE;
 
-    public static final DaoFactory getInstance() {
+    public static DaoFactory getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new DaoFactory();
         }
@@ -38,14 +37,10 @@ public class DaoFactory {
 
     private final PersonLocationDao personLocationDao;
 
-    private final UserDao userDao;
-
     private DaoFactory() {
-        /* The following line creates the database layer that uses JPA (Hibernate) and the H2 database */
-        this.personDao = new PersonDaoAdapter();
-        this.locationDao = new LocationDaoAdapter();
-        this.personLocationDao = new PersonLocationDaoAdapter();
-        this.userDao = new UserDaoAdapter();
+        this.personDao = new PersonStorage();
+        this.locationDao = new LocationStorage();
+        this.personLocationDao = new PersonLocationStorage(this.locationDao);
     }
 
     public PersonDao getPersonDao() {
@@ -58,9 +53,5 @@ public class DaoFactory {
 
     public PersonLocationDao getPersonLocationDao() {
         return personLocationDao;
-    }
-
-    public UserDao getUserDao() {
-        return userDao;
     }
 }
