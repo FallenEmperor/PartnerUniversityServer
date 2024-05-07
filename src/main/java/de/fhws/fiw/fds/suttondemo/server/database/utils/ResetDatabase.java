@@ -5,7 +5,7 @@ import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 public class ResetDatabase {
 
     public static void resetAll() {
-        DaoFactory.getInstance().getPersonLocationDao().resetDatabase();
+        DaoFactory.getInstance().getPersonDao().resetDatabase();
     }
 
 }

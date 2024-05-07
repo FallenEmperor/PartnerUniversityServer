@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import de.fhws.fiw.fds.sutton.client.model.AbstractClientModel;
+import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.HttpHeaders;
 import okhttp3.Headers;
 
 /**
@@ -12,6 +13,8 @@ import okhttp3.Headers;
  * of the received response
  * */
 public class WebApiResponse<T extends AbstractClientModel> {
+	private final static String HEADER_LOCATION = HttpHeaders.LOCATION;
+
 	private final Collection<T> responseData;
 
 	private final Headers responseHeaders;
@@ -88,6 +91,10 @@ public class WebApiResponse<T extends AbstractClientModel> {
 
 	public int getLastStatusCode() {
 		return lastStatusCode;
+	}
+
+	public Optional<String> getLocationHeader() {
+		return getResponseHeaders().values(HEADER_LOCATION).stream().findFirst();
 	}
 
 	private static <T> Collection<T> convertToList(final Optional<T> object) {

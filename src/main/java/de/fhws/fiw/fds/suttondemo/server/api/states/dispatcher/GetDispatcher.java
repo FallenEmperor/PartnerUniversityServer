@@ -32,5 +32,6 @@ public class GetDispatcher extends AbstractGetDispatcherState<Response> {
     @Override
     protected void defineTransitionLinks() {
         addLink(PersonUri.REL_PATH, PersonRelTypes.GET_ALL_PERSONS, getAcceptRequestHeader());
+        addLink(PersonUri.REL_PATH, PersonRelTypes.CREATE_PERSON, getAcceptRequestHeader());
     }
 }

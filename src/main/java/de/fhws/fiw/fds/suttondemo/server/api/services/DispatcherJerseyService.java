@@ -34,21 +34,8 @@ public class DispatcherJerseyService extends AbstractJerseyService {
     @Path("resetdatabase")
     @Produces({MediaType.APPLICATION_JSON})
     public Response resetDatabase() {
-        System.out.println("RESET DATABASE");
-
+        System.out.println("Resetting database");
         ResetDatabase.resetAll();
-
-        return Response.ok().build();
-    }
-
-    @GET
-    @Path("filldatabase")
-    @Produces({MediaType.APPLICATION_JSON})
-    public Response fillDatabase() {
-        System.out.println("FILL DATABASE");
-
-        InitializeDatabase.initializeDBWithRelations();
-
         return Response.ok().build();
     }
 }

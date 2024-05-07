@@ -24,15 +24,10 @@ import java.util.Optional;
 
 public class PersonWebResponse extends WebApiResponse<PersonClientModel> {
 
-    private final static String HEADER_LOCATION = HttpHeaders.LOCATION;
 
-    public PersonWebResponse(final Collection<PersonClientModel> responseData,
-                             final Headers headers, final int lastStatusCode) {
+    public PersonWebResponse(final Collection<PersonClientModel> responseData, final Headers headers, final int lastStatusCode) {
         super(responseData, headers, lastStatusCode);
     }
 
-    public Optional<String> getLocationHeader() {
-        return getResponseHeaders().values(HEADER_LOCATION).stream().findFirst();
-    }
 
 }

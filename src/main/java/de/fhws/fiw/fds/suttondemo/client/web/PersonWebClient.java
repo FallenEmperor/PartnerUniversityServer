@@ -14,6 +14,12 @@ public class PersonWebClient {
         this.client = new GenericWebClient<>();
     }
 
+    public PersonWebResponse getDispatcher( String url ) throws IOException
+    {
+        return createResponse( this.client.sendGetSingleRequest( url ) );
+    }
+
+
     public PersonWebResponse getSinglePerson(String url) throws IOException {
         return createResponse(this.client.sendGetSingleRequest(url, PersonClientModel.class));
     }

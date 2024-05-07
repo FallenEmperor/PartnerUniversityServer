@@ -18,6 +18,10 @@ public class PersonStorage extends AbstractInMemoryStorage<Person> implements Pe
         ), searchParameter.getOffset(), searchParameter.getSize());
     }
 
+    public void resetDatabase() {
+        this.storage.clear();
+    }
+
     private Predicate<Person> byFirstAndLastName(String firstName, String lastName) {
         return p -> (firstName.isEmpty() || p.getFirstName().equals(firstName) ) && ( lastName.isEmpty() || p.getLastName().equals(lastName));
     }
