@@ -3,13 +3,9 @@ package de.fhws.fiw.fds.suttondemo.server.api.states.person_locations;
 import de.fhws.fiw.fds.sutton.server.api.queries.AbstractRelationQuery;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
 import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
-import de.fhws.fiw.fds.sutton.server.api.states.AbstractState;
 import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetCollectionRelationState;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
-import de.fhws.fiw.fds.suttondemo.server.api.queries.QueryByLocationName;
 import jakarta.ws.rs.core.Response;
-
-import java.util.Collection;
 
 public class GetAllLocationsOfPerson extends AbstractGetCollectionRelationState<Response, Location> {
 

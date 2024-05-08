@@ -7,8 +7,8 @@ import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetRelationState;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
-import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
+import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 import jakarta.ws.rs.core.Response;
 
 public class GetSingleLocationOfPerson extends AbstractGetRelationState<Response, Location> {

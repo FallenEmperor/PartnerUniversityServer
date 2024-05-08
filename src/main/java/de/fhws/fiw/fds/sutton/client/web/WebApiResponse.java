@@ -1,11 +1,12 @@
 package de.fhws.fiw.fds.sutton.client.web;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
 import de.fhws.fiw.fds.sutton.client.model.AbstractClientModel;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.HttpHeaders;
 import okhttp3.Headers;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
 
 /**
  * The WebApiResponse class describes the main structure of the response received after executing an HTTP request

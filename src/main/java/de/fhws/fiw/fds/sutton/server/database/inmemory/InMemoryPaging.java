@@ -14,12 +14,12 @@
 
 package de.fhws.fiw.fds.sutton.server.database.inmemory;
 
+import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
+import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
-import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 
 public class InMemoryPaging {
     private InMemoryPaging() {

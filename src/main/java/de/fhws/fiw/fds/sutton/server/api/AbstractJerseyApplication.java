@@ -14,15 +14,15 @@
 
 package de.fhws.fiw.fds.sutton.server.api;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import de.fhws.fiw.fds.sutton.server.api.converter.JacksonConfig;
 import org.apache.catalina.filters.CorsFilter;
 import org.apache.catalina.loader.ParallelWebappClassLoader;
 import org.glassfish.jersey.linking.DeclarativeLinkingFeature;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class AbstractJerseyApplication extends ResourceConfig {
 

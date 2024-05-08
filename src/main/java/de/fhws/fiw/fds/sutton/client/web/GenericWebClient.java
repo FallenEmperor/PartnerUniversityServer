@@ -14,11 +14,6 @@
 
 package de.fhws.fiw.fds.sutton.client.web;
 
-import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -27,11 +22,12 @@ import de.fhws.fiw.fds.sutton.client.auth.ApiKeyInterceptor;
 import de.fhws.fiw.fds.sutton.client.auth.BasicAuthInterceptor;
 import de.fhws.fiw.fds.sutton.client.model.AbstractClientModel;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.HttpHeaders;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
+
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * This class defines a very simple generic Web client that always uses content type JSON and does

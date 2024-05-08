@@ -16,13 +16,13 @@
 
 package de.fhws.fiw.fds.sutton.server.api.queries;
 
-import java.net.URI;
-import java.util.Collection;
-
 import de.fhws.fiw.fds.sutton.server.api.hyperlinks.Hyperlinks;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.uriInfoAdapter.SuttonUriInfo;
 import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
+
+import java.net.URI;
+import java.util.Collection;
 
 /**
  * The PagingBehavior provides the basic requirements to create different paging mechanisms.

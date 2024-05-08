@@ -22,6 +22,7 @@ import de.fhws.fiw.fds.suttondemo.server.api.services.LocationJerseyService;
 import de.fhws.fiw.fds.suttondemo.server.api.services.PersonJerseyService;
 import jakarta.ws.rs.ApplicationPath;
 import org.apache.catalina.loader.ParallelWebappClassLoader;
+
 import java.util.HashSet;
 import java.util.Set;
 

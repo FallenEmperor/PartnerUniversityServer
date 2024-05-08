@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.fhws.fiw.fds.sutton.client.converters.ClientLinkJsonConverter;
 import de.fhws.fiw.fds.sutton.client.model.AbstractClientModel;
 import de.fhws.fiw.fds.sutton.client.utils.Link;
-import de.fhws.fiw.fds.sutton.server.api.hyperlinks.annotations.SecondarySelfLink;
-import de.fhws.fiw.fds.sutton.server.api.hyperlinks.annotations.SelfLink;
 
 import java.time.LocalDate;
 

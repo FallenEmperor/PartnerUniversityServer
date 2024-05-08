@@ -6,8 +6,8 @@ import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetCollectionState;
 import de.fhws.fiw.fds.sutton.server.database.DatabaseException;
 import de.fhws.fiw.fds.sutton.server.database.SearchParameter;
 import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
-import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
+import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 import jakarta.ws.rs.core.Response;
 
 public class GetAllLocations extends AbstractGetCollectionState<Response, Location> {

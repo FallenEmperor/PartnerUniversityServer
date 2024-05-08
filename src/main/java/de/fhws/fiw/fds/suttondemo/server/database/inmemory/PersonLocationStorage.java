@@ -5,9 +5,9 @@ import de.fhws.fiw.fds.sutton.server.database.SearchParameter;
 import de.fhws.fiw.fds.sutton.server.database.inmemory.AbstractInMemoryRelationStorage;
 import de.fhws.fiw.fds.sutton.server.database.inmemory.InMemoryPaging;
 import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
+import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
 import de.fhws.fiw.fds.suttondemo.server.database.LocationDao;
 import de.fhws.fiw.fds.suttondemo.server.database.PersonLocationDao;
-import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
 
 public class PersonLocationStorage extends AbstractInMemoryRelationStorage<Location> implements PersonLocationDao {
     final private LocationDao locationStorage;

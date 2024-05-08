@@ -1,12 +1,12 @@
 package de.fhws.fiw.fds.sutton.server.api.queries;
 
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.uriInfoAdapter.SuttonUriInfo;
 import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
+
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The PagingBehaviorUsingPage class is an instance of {@link PagingBehavior} and describes a paging behavior

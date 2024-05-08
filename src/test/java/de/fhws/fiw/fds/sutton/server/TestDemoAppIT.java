@@ -4,7 +4,6 @@ package de.fhws.fiw.fds.sutton.server;
 import com.github.javafaker.Faker;
 import de.fhws.fiw.fds.suttondemo.client.models.PersonClientModel;
 import de.fhws.fiw.fds.suttondemo.client.rest.DemoRestClient;
-import de.fhws.fiw.fds.suttondemo.client.web.PersonWebClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

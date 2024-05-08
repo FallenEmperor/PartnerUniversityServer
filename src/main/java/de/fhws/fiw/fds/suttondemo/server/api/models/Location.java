@@ -2,7 +2,7 @@ package de.fhws.fiw.fds.suttondemo.server.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import de.fhws.fiw.fds.sutton.server.api.hyperlinks.*;
+import de.fhws.fiw.fds.sutton.server.api.hyperlinks.Link;
 import de.fhws.fiw.fds.sutton.server.api.hyperlinks.annotations.SecondarySelfLink;
 import de.fhws.fiw.fds.sutton.server.api.hyperlinks.annotations.SelfLink;
 import de.fhws.fiw.fds.sutton.server.models.AbstractModel;

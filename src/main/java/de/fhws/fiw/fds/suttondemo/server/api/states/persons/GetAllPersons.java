@@ -23,8 +23,6 @@ import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetCollectionState;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
 import jakarta.ws.rs.core.Response;
 
-import java.util.Collection;
-
 public class GetAllPersons extends AbstractGetCollectionState<Response, Person> {
 
     public GetAllPersons(ServiceContext serviceContext, AbstractQuery<Response, Person> query) {

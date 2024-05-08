@@ -14,18 +14,19 @@
 
 package de.fhws.fiw.fds.sutton.server.database.inmemory;
 
+import de.fhws.fiw.fds.sutton.server.database.SearchParameter;
+import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
+import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
+import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
+import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
+import org.apache.commons.lang.ObjectUtils;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import org.apache.commons.lang.ObjectUtils;
-import de.fhws.fiw.fds.sutton.server.database.SearchParameter;
-import de.fhws.fiw.fds.sutton.server.database.results.CollectionModelResult;
-import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
-import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
-import de.fhws.fiw.fds.sutton.server.models.AbstractModel;
 
 public abstract class AbstractInMemoryStorage<T extends AbstractModel> {
 	protected Map<Long, T> storage;

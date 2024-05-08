@@ -15,10 +15,6 @@
 package de.fhws.fiw.fds.suttondemo.server.api.services;
 
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.Exceptions.SuttonWebAppException;
-import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.ServletRequestAdapter.JerseyServletRequest;
-import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.requestAdapter.JerseyRequest;
-import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
-import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.uriInfoAdapter.JerseyUriInfoAdapter;
 import de.fhws.fiw.fds.sutton.server.api.services.AbstractJerseyService;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
@@ -26,12 +22,9 @@ import de.fhws.fiw.fds.suttondemo.server.api.queries.QueryByFirstAndLastName;
 import de.fhws.fiw.fds.suttondemo.server.api.queries.QueryByLocationName;
 import de.fhws.fiw.fds.suttondemo.server.api.states.person_locations.*;
 import de.fhws.fiw.fds.suttondemo.server.api.states.persons.*;
-
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
-import java.util.Collection;
 
 @Path("persons")
 public class PersonJerseyService extends AbstractJerseyService {

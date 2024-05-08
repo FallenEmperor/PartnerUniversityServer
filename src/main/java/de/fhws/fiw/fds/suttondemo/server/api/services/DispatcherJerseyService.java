@@ -1,13 +1,8 @@
 package de.fhws.fiw.fds.suttondemo.server.api.services;
 
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.Exceptions.SuttonWebAppException;
-import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.ServletRequestAdapter.JerseyServletRequest;
-import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.requestAdapter.JerseyRequest;
-import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
-import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.uriInfoAdapter.JerseyUriInfoAdapter;
 import de.fhws.fiw.fds.sutton.server.api.services.AbstractJerseyService;
 import de.fhws.fiw.fds.suttondemo.server.api.states.dispatcher.GetDispatcher;
-import de.fhws.fiw.fds.suttondemo.server.database.utils.InitializeDatabase;
 import de.fhws.fiw.fds.suttondemo.server.database.utils.ResetDatabase;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
