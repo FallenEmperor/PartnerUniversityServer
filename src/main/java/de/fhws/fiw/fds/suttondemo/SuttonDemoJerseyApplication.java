@@ -21,7 +21,6 @@ import de.fhws.fiw.fds.suttondemo.server.api.services.DispatcherJerseyService;
 import de.fhws.fiw.fds.suttondemo.server.api.services.LocationJerseyService;
 import de.fhws.fiw.fds.suttondemo.server.api.services.PersonJerseyService;
 import jakarta.ws.rs.ApplicationPath;
-import org.apache.catalina.loader.ParallelWebappClassLoader;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,18 +30,6 @@ public class SuttonDemoJerseyApplication extends AbstractJerseyApplication {
 
     @Override
     protected Set<Class<?>> getServiceClasses() {
-        /*
-         * The following two lines solve the problem that the embedded version of Tomcat cannot be started
-         * by using class Start. The problem was that JPA is initialized using the system class loader
-         * whereas the Web app is loaded by the classloader ParallelWebappClassLoader. The latter one is
-         * configured by default not to use delegation, i.e. the ParallelWebappClassloader does know
-         * the system class loader as parent but does not use it. Delegation is activated by the following
-         * two lines.
-         */
-
-        ParallelWebappClassLoader classloader = (ParallelWebappClassLoader) this.getClass().getClassLoader();
-        classloader.setDelegate(true);
-
         final Set<Class<?>> returnValue = new HashSet<>();
 
         returnValue.add(PersonJerseyService.class);
