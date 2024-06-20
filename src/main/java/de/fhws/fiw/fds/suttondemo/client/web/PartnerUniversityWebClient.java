@@ -45,6 +45,10 @@ public class PartnerUniversityWebClient {
         return createResponse(this.client.sendGetSingleRequest(url + "/resetdatabase"));
     }
 
+    public PartnerUniversityWebResponse initializeDatabaseOnServer(String url) throws IOException {
+        return createResponse(this.client.sendGetSingleRequest(url + "/initializedatabase"));
+    }
+
     private PartnerUniversityWebResponse createResponse(WebApiResponse<PartnerUniversityModel> response) {
         return new PartnerUniversityWebResponse(response.getResponseData(), response.getResponseHeaders(),
                 response.getLastStatusCode());

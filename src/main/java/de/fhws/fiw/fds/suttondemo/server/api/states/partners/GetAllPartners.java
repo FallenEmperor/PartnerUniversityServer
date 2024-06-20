@@ -16,8 +16,17 @@ public class GetAllPartners extends AbstractGetCollectionState<Response, Partner
 
     @Override
     protected void defineTransitionLinks() {
+
+        // Link to create new partner
+
         addLink(PartnerUri.REL_PATH, PartnerRelTypes.CREATE_PARTNER, getAcceptRequestHeader());
+
+        // Link to get single partner
+
         addLink(PartnerUri.REL_PATH_ID, PartnerRelTypes.GET_SINGLE_PARTNER, getAcceptRequestHeader());
+
+        // Links to different filtering methods
+
         addLink(PartnerUri.REL_PATH + "?universityname={PARTNERNAME}",PartnerRelTypes.FILTER_BY_NAME,getAcceptRequestHeader() );
         addLink(PartnerUri.REL_PATH + "?order={ORDER}", PartnerRelTypes.ORDERING, getAcceptRequestHeader());
         addLink(PartnerUri.REL_PATH + "?universityname={PARTNERNAME}&order={ORDER}", PartnerRelTypes.FILTERANDORDER, getAcceptRequestHeader());

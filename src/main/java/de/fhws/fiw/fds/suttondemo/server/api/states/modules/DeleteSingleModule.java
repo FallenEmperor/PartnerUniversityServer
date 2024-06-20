@@ -5,8 +5,6 @@ import de.fhws.fiw.fds.sutton.server.api.states.delete.AbstractDeleteState;
 import de.fhws.fiw.fds.sutton.server.database.results.NoContentResult;
 import de.fhws.fiw.fds.sutton.server.database.results.SingleModelResult;
 import de.fhws.fiw.fds.suttondemo.server.api.models.Module;
-import de.fhws.fiw.fds.suttondemo.server.api.states.partners.PartnerRelTypes;
-import de.fhws.fiw.fds.suttondemo.server.api.states.partners.PartnerUri;
 import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 import jakarta.ws.rs.core.Response;
 
@@ -30,7 +28,9 @@ public class DeleteSingleModule extends AbstractDeleteState<Response, Module> {
 
     @Override protected void defineTransitionLinks( )
     {
-        addLink( PartnerUri.REL_PATH, PartnerRelTypes.GET_ALL_PARTNERS, getAcceptRequestHeader( ) );
+        // Link to all modules
+
+        addLink( ModuleUri.REL_PATH, ModuleRelTypes.GET_ALL_MODULES, getAcceptRequestHeader( ) );
     }
 
 }

@@ -29,6 +29,8 @@ public class DeleteSinglePartner extends AbstractDeleteState<Response, PartnerUn
     @Override
     protected void defineTransitionLinks() {
 
+        // Link to get all partners
+
         addLink(PartnerUri.REL_PATH, PartnerRelTypes.GET_ALL_PARTNERS, getAcceptRequestHeader());
 
     }

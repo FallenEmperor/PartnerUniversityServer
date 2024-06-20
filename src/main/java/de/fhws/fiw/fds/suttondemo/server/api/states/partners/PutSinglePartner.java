@@ -40,6 +40,7 @@ public class PutSinglePartner extends AbstractPutState<Response, PartnerUniversi
         
         addLink(PartnerUri.REL_PATH_ID, PartnerRelTypes.GET_SINGLE_PARTNER, getAcceptRequestHeader(),
                 this.modelToUpdate.getId());
+
     }
 
 }

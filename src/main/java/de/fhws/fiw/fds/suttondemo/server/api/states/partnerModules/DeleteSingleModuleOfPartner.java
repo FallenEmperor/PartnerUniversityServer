@@ -29,6 +29,9 @@ public class DeleteSingleModuleOfPartner extends AbstractDeleteRelationState<Res
 
     @Override
     protected void defineTransitionLinks() {
+
+        // Link to get all modules
+
         addLink(PartnerModuleUri.REL_PATH, PartnerModuleRelTypes.GET_ALL_MODULES, getAcceptRequestHeader(), this.primaryId);
     }
 

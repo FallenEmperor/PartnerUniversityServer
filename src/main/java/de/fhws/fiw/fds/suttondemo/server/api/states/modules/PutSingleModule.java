@@ -41,6 +41,8 @@ public class PutSingleModule extends AbstractPutState<Response, Module> {
 
     @Override protected void defineTransitionLinks( )
     {
+        // Link to get single module just updated
+        
         addLink( ModuleUri.REL_PATH_ID, ModuleRelTypes.GET_SINGLE_MODULE, getAcceptRequestHeader( ),
                 this.modelToUpdate.getId( ) );
 

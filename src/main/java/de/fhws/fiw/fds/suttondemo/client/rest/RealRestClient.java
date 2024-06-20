@@ -51,6 +51,11 @@ public class RealRestClient extends AbstractRestClient {
         });
     }
 
+    public void initializeDatabase() throws IOException {
+        processResponse(this.partnerClient.initializeDatabaseOnServer(BASE_URL), (response) -> {
+        });
+    }
+
     // Only need the one dispatcher, not necessary from Module side
 
     public void start() throws IOException {
@@ -92,8 +97,8 @@ public class RealRestClient extends AbstractRestClient {
         return !this.currentPartnerData.isEmpty() || isLocationHeaderAvailable() || isLinkAvailable(GET_SINGLE_PARTNER);
     }
 
-    public List<PartnerUniversityModel> partnerData() {
-        if (this.currentPartnerData.isEmpty()) {
+    public List<PartnerUniversityModel> partnerData(){
+        if(this.currentPartnerData.isEmpty()){
             throw new IllegalStateException();
         }
 
@@ -115,6 +120,9 @@ public class RealRestClient extends AbstractRestClient {
         else if (!this.currentPartnerData.isEmpty()) {
             getSinglePartner(this.cursorPartnerData);
         }
+        else if(isLinkAvailable(GET_SINGLE_PARTNER)){
+            getSinglePartner(getUrl(GET_SINGLE_PARTNER));
+        }
         else {
             throw new IllegalStateException();
         }
@@ -126,7 +134,7 @@ public class RealRestClient extends AbstractRestClient {
 
     private void getSinglePartner(String url) throws IOException {
         processResponse(this.partnerClient.getSinglePartner(url), (response) -> {
-            this.currentPartnerData = new LinkedList(response.getResponseData());
+            this.currentPartnerData = new LinkedList<>(response.getResponseData());
             this.cursorPartnerData = 0;
         });
     }
