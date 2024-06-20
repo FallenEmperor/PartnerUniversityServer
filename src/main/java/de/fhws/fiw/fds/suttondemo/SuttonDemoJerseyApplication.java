@@ -18,8 +18,8 @@ package de.fhws.fiw.fds.suttondemo;
 
 import de.fhws.fiw.fds.sutton.server.api.AbstractJerseyApplication;
 import de.fhws.fiw.fds.suttondemo.server.api.services.DispatcherJerseyService;
-import de.fhws.fiw.fds.suttondemo.server.api.services.LocationJerseyService;
-import de.fhws.fiw.fds.suttondemo.server.api.services.PersonJerseyService;
+import de.fhws.fiw.fds.suttondemo.server.api.services.ModuleJerseyService;
+import de.fhws.fiw.fds.suttondemo.server.api.services.PartnerUniversityJerseyService;
 import jakarta.ws.rs.ApplicationPath;
 
 import java.util.HashSet;
@@ -32,8 +32,8 @@ public class SuttonDemoJerseyApplication extends AbstractJerseyApplication {
     protected Set<Class<?>> getServiceClasses() {
         final Set<Class<?>> returnValue = new HashSet<>();
 
-        returnValue.add(PersonJerseyService.class);
-        returnValue.add(LocationJerseyService.class);
+        returnValue.add(PartnerUniversityJerseyService.class);
+        returnValue.add(ModuleJerseyService.class);
         returnValue.add(DispatcherJerseyService.class);
 
         return returnValue;

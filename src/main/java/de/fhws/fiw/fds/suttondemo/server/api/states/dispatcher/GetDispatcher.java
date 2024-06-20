@@ -17,8 +17,8 @@ package de.fhws.fiw.fds.suttondemo.server.api.states.dispatcher;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
 import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetDispatcherState;
-import de.fhws.fiw.fds.suttondemo.server.api.states.persons.PersonRelTypes;
-import de.fhws.fiw.fds.suttondemo.server.api.states.persons.PersonUri;
+import de.fhws.fiw.fds.suttondemo.server.api.states.partners.PartnerRelTypes;
+import de.fhws.fiw.fds.suttondemo.server.api.states.partners.PartnerUri;
 import jakarta.ws.rs.core.Response;
 
 public class GetDispatcher extends AbstractGetDispatcherState<Response> {
@@ -30,7 +30,7 @@ public class GetDispatcher extends AbstractGetDispatcherState<Response> {
 
     @Override
     protected void defineTransitionLinks() {
-        addLink(PersonUri.REL_PATH, PersonRelTypes.GET_ALL_PERSONS, getAcceptRequestHeader());
-        addLink(PersonUri.REL_PATH, PersonRelTypes.CREATE_PERSON, getAcceptRequestHeader());
+        addLink(PartnerUri.REL_PATH, PartnerRelTypes.GET_ALL_PARTNERS, getAcceptRequestHeader());
+        addLink(PartnerUri.REL_PATH, PartnerRelTypes.CREATE_PARTNER, getAcceptRequestHeader());
     }
 }

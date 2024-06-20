@@ -5,6 +5,6 @@ import de.fhws.fiw.fds.suttondemo.server.database.DaoFactory;
 public class InitializeDatabase {
 
     public static void initializeDBWithRelations() {
-        DaoFactory.getInstance().getPersonLocationDao().initializeDatabase();
+        DaoFactory.getInstance().getPartnerModuleDao().initializeDatabase();
     }
 }

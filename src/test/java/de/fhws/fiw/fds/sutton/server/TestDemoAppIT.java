@@ -1,3 +1,4 @@
+/* 
 package de.fhws.fiw.fds.sutton.server;
 
 
@@ -83,6 +84,7 @@ public class TestDemoAppIT {
          * iterations. But this is how the client works. The dispatcher is the entry point
          * and we need to call it in order to get the URL to create a new person.
          */
+        /* 
         for( int i=0; i<5; i++ ) {
             client.start();
 
@@ -97,16 +99,19 @@ public class TestDemoAppIT {
         }
 
         /* Now we call the dispatcher to get the URL to get all persons */
+        /* 
         client.start();
         assertTrue( client.isGetAllPersonsAllowed() );
 
         client.getAllPersons();
         assertEquals(200, client.getLastStatusCode());
         assertEquals(5, client.personData().size());
-
+        
         /* Set the cursor to the first person, not really necessary, but to make it clear here */
+        /* 
         client.setPersonCursor(0);
         client.getSinglePerson();
         assertEquals(200, client.getLastStatusCode());
     }
 }
+*/

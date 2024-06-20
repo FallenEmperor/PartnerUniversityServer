@@ -14,10 +14,11 @@
 
 package de.fhws.fiw.fds.suttondemo.server.database;
 
+import org.eclipse.jdt.internal.compiler.lookup.ModuleScope;
 
-import de.fhws.fiw.fds.suttondemo.server.database.inmemory.LocationStorage;
-import de.fhws.fiw.fds.suttondemo.server.database.inmemory.PersonLocationStorage;
-import de.fhws.fiw.fds.suttondemo.server.database.inmemory.PersonStorage;
+import de.fhws.fiw.fds.suttondemo.server.database.inmemory.ModuleStorage;
+import de.fhws.fiw.fds.suttondemo.server.database.inmemory.PartnerModuleStorage;
+import de.fhws.fiw.fds.suttondemo.server.database.inmemory.PartnerStorage;
 
 public class DaoFactory {
 
@@ -31,27 +32,27 @@ public class DaoFactory {
         return INSTANCE;
     }
 
-    private final PersonDao personDao;
+    private final PartnerDao partnerDao;
 
-    private final LocationDao locationDao;
+    private final ModuleDao moduleDao;
 
-    private final PersonLocationDao personLocationDao;
+    private final PartnerModuleDao partnerModuleDao;
 
     private DaoFactory() {
-        this.personDao = new PersonStorage();
-        this.locationDao = new LocationStorage();
-        this.personLocationDao = new PersonLocationStorage(this.locationDao);
+        this.partnerDao = new PartnerStorage();
+        this.moduleDao = new ModuleStorage();
+        this.partnerModuleDao = new PartnerModuleStorage(this.moduleDao);
     }
 
-    public PersonDao getPersonDao() {
-        return this.personDao;
+    public PartnerDao getPartnerDao() {
+        return this.partnerDao;
     }
 
-    public LocationDao getLocationDao() {
-        return this.locationDao;
+    public PartnerModuleDao getPartnerModuleDao() {
+        return partnerModuleDao;
     }
 
-    public PersonLocationDao getPersonLocationDao() {
-        return personLocationDao;
+    public ModuleDao getModuleDao() {
+        return moduleDao;
     }
 }
